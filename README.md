@@ -103,11 +103,11 @@ The Nexus CLI features an **adaptive difficulty system** that automatically adju
 #### How It Works
 
 - **Starts at**: `small_medium` difficulty
-- **Auto-promotes**: `small_medium` → `medium` → `large` → `extra_large` → `extra_large2` (if tasks complete in < 7 minutes)
+- **Auto-promotes**: `small_medium` → `medium` → `large` → `extra_large` → `extra_large_2` (if tasks complete in < 7 minutes)
 - **Safety**: `small` difficulty does not auto-promote (manual override only)
 
 ```
-small_medium → medium → large → extra_large → extra_large2
+small_medium → medium → large → extra_large → extra_large_2
      ↑           ↑        ↑         ↑            ↑
    Default    < 7 min   < 7 min   < 7 min     < 7 min
               success   success   success     success
@@ -137,7 +137,7 @@ nexus-cli start --max-difficulty small_medium
 # Higher difficulty for powerful hardware
 nexus-cli start --max-difficulty large
 nexus-cli start --max-difficulty extra_large
-nexus-cli start --max-difficulty extra_large2
+nexus-cli start --max-difficulty extra_large_2
 
 # Case-insensitive (all equivalent)
 nexus-cli start --max-difficulty MEDIUM
@@ -151,7 +151,7 @@ nexus-cli start --max-difficulty Medium
 - `medium` - Moderate complexity, good for most systems
 - `large` - High complexity, requires powerful hardware
 - `extra_large` - Very high complexity, for dedicated high-end systems
-- `extra_large2` - Maximum complexity, for the most powerful systems
+- `extra_large_2` - Maximum complexity, for the most powerful systems
 
 #### Difficulty Guidelines
 
@@ -162,7 +162,7 @@ nexus-cli start --max-difficulty Medium
 | `medium` | Standard desktop/laptop |
 | `large` | High-performance systems |
 | `extra_large` | Dedicated proving machines |
-| `extra_large2` | Maximum performance systems |
+| `extra_large_2` | Maximum performance systems |
 
 > **Tip**: Use `nexus-cli start --help` to see the full auto-promotion details in the CLI help text.
 
