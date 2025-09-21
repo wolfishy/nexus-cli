@@ -99,7 +99,7 @@ pub async fn setup_session(
     }
 
     // Clamp the number of workers to [1,8]. Keep this low for now to avoid rate limiting.
-    let num_workers: usize = max_threads.unwrap_or(1).clamp(1, 8) as usize;
+    let num_workers: usize = max_threads.unwrap_or(1) as usize;
 
     // Create shutdown channel - only one shutdown signal needed
     let (shutdown_sender, _) = broadcast::channel(1);
@@ -117,6 +117,7 @@ pub async fn setup_session(
         client_id,
         max_tasks,
         max_difficulty,
+        num_workers,
     )
     .await;
 
