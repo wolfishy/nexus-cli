@@ -154,19 +154,25 @@ nexus-cli start --max-difficulty Medium
 - `small_medium` - Default starting difficulty, balanced performance
 - `medium` - Moderate complexity, good for most systems
 - `large` - High complexity, requires powerful hardware
-- `extra_large` - Very high complexity, for dedicated high-end systems
-- `extra_large_2` - Maximum complexity, for the most powerful systems
+- `extra_large` - Very high complexity, dedicated high-end systems
+- `extra_large_2` - Maximum complexity, the most powerful systems
+- `extra_large_3` - Extreme complexity, advanced dedicated systems with enhanced power
+- `extra_large_4` - Ultra-high complexity, specialized high-performance clusters
+- `extra_large_5` - Very Ultra-High complexity, enterprise-grade data center environments
 
 #### Difficulty Guidelines
 
-| Difficulty | Use Case |
-|------------|----------|
-| `small` | Resource-constrained, background processing |
-| `small_medium` | Default, balanced performance |
-| `medium` | Standard desktop/laptop |
-| `large` | High-performance systems |
-| `extra_large` | Dedicated proving machines |
-| `extra_large_2` | Maximum performance systems |
+| Difficulty        | Use Case |
+|-------------------|----------|
+| `small`           | Resource-constrained, background processing |
+| `small_medium`    | Default, balanced performance |
+| `medium`          | Standard desktop/laptop |
+| `large`           | High-performance systems |
+| `extra_large`     | Dedicated proving machines |
+| `extra_large_2`   | Maximum performance systems |
+| `extra_large_3`   | Advanced dedicated systems for intensive computational tasks |
+| `extra_large_4`   | Specialized high-performance clusters for extreme workloads |
+| `extra_large_5`   | Enterprise-grade data centers for very ultra-high complexity tasks and maximum reward optimization |
 
 > **Tip**: Use `nexus-cli start --help` to see the full auto-promotion details in the CLI help text.
 
