@@ -103,13 +103,13 @@ The Nexus CLI features an **adaptive difficulty system** that automatically adju
 #### How It Works
 
 - **Starts at**: `small_medium` difficulty
-- **Auto-promotes**: `small_medium` → `medium` → `large` → `extra_large` → `extra_large_2` (if tasks complete in < 7 minutes)
+- **Auto-promotes**: `small_medium` → `medium` → `large` → `extra_large` → `extra_large_2` (if tasks complete in < 5 minutes)
 - **Safety**: `small` difficulty does not auto-promote (manual override only)
 
 ```
 small_medium → medium → large → extra_large → extra_large_2
      ↑           ↑        ↑         ↑            ↑
-   Default    < 7 min   < 7 min   < 7 min     < 7 min
+   Default    < 5 min   < 5 min   < 5 min     < 5 min
               success   success   success     success
 ```
 
@@ -126,6 +126,10 @@ small_medium → medium → large → extra_large → extra_large_2
 - Dedicated proving machines
 - Experienced users who understand requirements
 - Maximum reward optimization
+
+**Extreme Difficulty** (`ExtraLarge3`, `ExtraLarge4`, or `ExtraLarge5`):
+- Designed for very large CPU-bound and memory-bound tasks
+- Not intended for personal machines — requires specialized infrastructure
 
 #### Using Difficulty Override
 
@@ -154,19 +158,25 @@ nexus-cli start --max-difficulty Medium
 - `small_medium` - Default starting difficulty, balanced performance
 - `medium` - Moderate complexity, good for most systems
 - `large` - High complexity, requires powerful hardware
-- `extra_large` - Very high complexity, for dedicated high-end systems
-- `extra_large_2` - Maximum complexity, for the most powerful systems
+- `extra_large` - Very high complexity, dedicated high-end systems
+- `extra_large_2` - Maximum complexity, the most powerful systems
+- `extra_large_3` - Extreme complexity, advanced dedicated systems with more resources
+- `extra_large_4` - Ultra-high complexity, specialized high-performance clusters
+- `extra_large_5` - Very Ultra-High complexity, for datacenter environments
 
 #### Difficulty Guidelines
 
-| Difficulty | Use Case |
-|------------|----------|
-| `small` | Resource-constrained, background processing |
-| `small_medium` | Default, balanced performance |
-| `medium` | Standard desktop/laptop |
-| `large` | High-performance systems |
-| `extra_large` | Dedicated proving machines |
-| `extra_large_2` | Maximum performance systems |
+| Difficulty        | Use Case |
+|-------------------|----------|
+| `small`           | Resource-constrained, background processing |
+| `small_medium`    | Default, balanced performance |
+| `medium`          | Standard desktop/laptop |
+| `large`           | High-performance systems |
+| `extra_large`     | Dedicated proving machines |
+| `extra_large_2`   | Maximum performance systems |
+| `extra_large_3`   | Advanced dedicated systems for intensive computational tasks |
+| `extra_large_4`   | Specialized high-performance clusters for extreme workloads |
+| `extra_large_5`   | Enterprise-grade data centers for very ultra-high complexity tasks and maximum reward optimization |
 
 > **Tip**: Use `nexus-cli start --help` to see the full auto-promotion details in the CLI help text.
 
