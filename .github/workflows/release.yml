@@ -162,6 +162,58 @@ jobs:
         with:
           name: nexus-network-linux-arm64 # Name of the artifact
           path: clients/cli/target/aarch64-unknown-linux-gnu/release/nexus-network-linux-arm64 # Path to file to upload
+  
+  build-windows-x86_64:
+    name: Build Windows (x86_64)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: "clients/cli -> target"
+          cache-all-crates: "true"
+          cache-on-failure: "true"
+          key: "windows-x86_64"
+
+      # Set up the Rust toolchain for the specified target(s)
+      # When passing an explicit toolchain... you'll want to use "dtolnay/rust-toolchain@master"
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.RUSTUP_TOOLCHAIN }}
+          targets: x86_64-pc-windows-msvc
+          components: rustfmt, rust-src
+
+      - name: Debug Rust environment
+        run: |
+          echo "Rust version: $(rustc --version --verbose)"
+          echo "Cargo version: $(cargo --version)"
+          echo "Rustup installed targets: $(rustup target list --installed | tr '\n' ',' | sed 's/,$//')"
+          echo "Rustup active toolchain: $(rustup show active-toolchain)"
+          echo "Host target: $(rustc -vV | grep host)"
+
+      # Build the release binary for the specified target
+      - name: Build CLI binary
+        working-directory: clients/cli
+        run: cargo build --release --target=x86_64-pc-windows-msvc
+        env:
+          # Override config.toml target-cpu=native with generic for precompiled builds
+          RUSTFLAGS: "-C target-cpu=generic -C target-feature=+sse4.2,+avx,+avx2"
+
+      # Rename the binary to indicate the target OS and platform
+      - name: Rename binary
+        working-directory: clients/cli/target/x86_64-pc-windows-msvc/release/
+        run: cp nexus-network.exe nexus-network-windows-x86_64.exe
+
+      # Upload the binary as an artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexus-network-windows-x86_64.exe # Name of the artifact
+          path: clients/cli/target/x86_64-pc-windows-msvc/release/nexus-network-windows-x86_64.exe # Path to file to upload
 
   release:
     name: Create Release
