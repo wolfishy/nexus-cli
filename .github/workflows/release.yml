@@ -217,7 +217,7 @@ jobs:
 
   release:
     name: Create Release
-    needs: [ build-linux-x86_64, build-linux-arm64 ] # for linux os only.
+    needs: [ build-linux-x86_64, build-linux-arm64, build-windows-x86_64 ] # for linux & windows os only.
     if: github.event.inputs.create_release == 'true' || github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -251,6 +251,8 @@ jobs:
             artifacts/nexus-network-linux-arm64.sha256
             artifacts/nexus-network-linux-x86_64
             artifacts/nexus-network-linux-x86_64.sha256
+            artifacts/nexus-network-windows-x86_64.exe
+            artifacts/nexus-network-windows-x86_64.exe.sha256
           draft: false
           prerelease: false
           generate_release_notes: true
